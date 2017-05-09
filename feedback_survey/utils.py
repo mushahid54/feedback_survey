@@ -8,7 +8,6 @@ class CustomMetaDataMixin(object):
     When you Inherit from this Mixin, remember to keep it to the left of any ApiView subclass,
     else this mixin's finalize_response() method won't override ApiView's
 
-    Created by Amrullah on 25/03/2016
     """
 
     def finalize_response(self, request, response, *args, **kwargs):
