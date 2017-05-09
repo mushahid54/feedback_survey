@@ -26,8 +26,8 @@ class CourseViewSet(CustomMetaDataMixin, ModelViewSet):
     """
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
-    # authentication_classes = [OAuth2Authentication, ]
-    # permission_classes = [permissions.IsAuthenticated, permissions.IsAdminUser]
+    authentication_classes = [OAuth2Authentication, ]
+    permission_classes = [permissions.IsAuthenticated, permissions.IsAdminUser]
 
 
 class TeacherSerializerViewSet(CustomMetaDataMixin, ModelViewSet):
@@ -46,7 +46,6 @@ class SectionSerializerViewSet(CustomMetaDataMixin, ModelViewSet):
     """
     queryset = Section.objects.all()
     serializer_class = SectionSerializer
-
 
 class StudentSerializerViewSet(CustomMetaDataMixin, ModelViewSet):
     """
