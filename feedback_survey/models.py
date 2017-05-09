@@ -1,5 +1,6 @@
 
 from django.db import models
+from django.db.models import Avg
 
 
 class Teacher(models.Model):
@@ -20,25 +21,17 @@ class Course(models.Model):
     def __str__(self):
         return self.name
 
-    @property
-    def course_avg_rating(self):
-        course_feedbacks = Feedback.objects.filter(course=self)
-        courses = len(course_feedbacks)
-        rating_count = 0
-        avg_rating = 0
-        for course in course_feedbacks:
-            rating_count += course.rating
-        try:
-            avg_rating = rating_count / courses
-        except ZeroDivisionError:
-            pass
-        return avg_rating
-
     def get_university(self):
         if self.university:
             return self.university.name
         else:
             return "N/A"
+
+    @property
+    def course_avg_rating(self):
+        avg_rating = Feedback.objects.filter(course=self).aggregate(Avg('rating'))['rating__avg']
+
+        return avg_rating
 
 
 class SectionField(models.Model):

@@ -1,14 +1,28 @@
 from rest_framework import serializers
-from feedback_survey.models import Course, Teacher, FeedbackTemplate, SectionField, Section, Feedback, Student
+from feedback_survey.models import Course, Teacher, FeedbackTemplate, SectionField, Section, Feedback, Student, \
+    University
+
+
+class UniversitySerializer(serializers.ModelSerializer):
+    """
+
+    """
+
+    class Meta:
+        model = University
+        fields = ('name', 'address')
 
 
 class CourseSerializer(serializers.ModelSerializer):
     """
 
     """
+    university = UniversitySerializer()
     class Meta:
         model = Course
-        fields = '__all__'
+        fields = ('name', 'course_id', 'university')
+
+
 
 
 class TeacherSerializer(serializers.ModelSerializer):
@@ -66,7 +80,7 @@ class StudentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Student
-        fields = ('name', 'email', 'course' )
+        fields = ('name', 'email', 'course')
 
 
 
