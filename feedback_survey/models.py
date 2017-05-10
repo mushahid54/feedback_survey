@@ -92,7 +92,7 @@ class Student(models.Model):
     """
         Each Student belong to at least one course and one university
     """
-    name = models.CharField(max_length=200, unique=True)
+    name = models.CharField(max_length=200)
     email = models.EmailField(max_length=255, blank=True)
     course = models.ForeignKey("feedback_survey.Course", blank=True)
     university = models.ForeignKey("feedback_survey.University", blank=True)
