@@ -44,7 +44,7 @@ APIs
      }
     `````
 
-** Course List**
+**Course List**
 
  - Method : GET
  - URL : http://127.0.0.1:8000/api/v1/courses/
