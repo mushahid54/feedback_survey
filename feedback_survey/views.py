@@ -19,6 +19,10 @@ class FeedbackSurveyViewSet(CustomMetaDataMixin, ModelViewSet):
     # authentication_classes = [OAuth2Authentication, ]
     # permission_classes = [permissions.IsAuthenticated, permissions.IsAdminUser]
 
+    def get_queryset(self):
+        # Get Student Primray Key and State SHoudl be
+        return self.queryset.filter(sta)
+
 
 class CourseViewSet(CustomMetaDataMixin, ModelViewSet):
     """

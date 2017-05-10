@@ -3,6 +3,11 @@ from django.db import models
 from django.db.models import Avg
 
 
+STATUS_CHOICES = (
+    ('1', 'Pending'),
+    ('2', 'Completed')
+)
+
 class Teacher(models.Model):
     """
     """
@@ -59,7 +64,6 @@ class Section(models.Model):
 class FeedbackTemplate(models.Model):
     """
     """
-
     sections = models.ManyToManyField("feedback_survey.Section")
 
     def __str__(self):
@@ -75,6 +79,7 @@ class Feedback(models.Model):
     course = models.ForeignKey("feedback_survey.Course", null=True, blank=True)
     student = models.ForeignKey("feedback_survey.Student", null=True, blank=True)
     rating = models.IntegerField()
+    state = models.CharField(max_length=3, choices=STATUS_CHOICES, default=1)
     feedback_template = models.ForeignKey("feedback_survey.FeedbackTemplate", null=True, blank=True)
 
     def __str__(self):
