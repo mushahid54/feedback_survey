@@ -23,6 +23,9 @@ Run the server
 ---------------
 - Now you can run the server from feedback_survey folder $ python manage.py runserver
 
+Create Student with random course allotment by Managemnet Command
+---------------
+- run python manage.py student_allotment_course
 
 APIs
 ---------------
