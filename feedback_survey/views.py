@@ -1,13 +1,14 @@
-from django.shortcuts import render
-
 # Create your views here.
 from oauth2_provider.ext.rest_framework import OAuth2Authentication
 from rest_framework import permissions
 from rest_framework.viewsets import ModelViewSet
+from feedback_survey.filters import FeedbackStudentFilter
+
 from feedback_survey.models import Feedback, Course, Teacher, Section, Student
 from feedback_survey.serializers import FeedbackSerializer, CourseSerializer, TeacherSerializer, SectionSerializer, \
     StudentSerializer
 from feedback_survey.utils import CustomMetaDataMixin
+from rest_framework import filters
 
 
 class FeedbackSurveyViewSet(CustomMetaDataMixin, ModelViewSet):
@@ -16,12 +17,10 @@ class FeedbackSurveyViewSet(CustomMetaDataMixin, ModelViewSet):
     """
     queryset = Feedback.objects.all()
     serializer_class = FeedbackSerializer
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_class = FeedbackStudentFilter
     # authentication_classes = [OAuth2Authentication, ]
     # permission_classes = [permissions.IsAuthenticated, permissions.IsAdminUser]
-
-    def get_queryset(self):
-        # Get Student Primray Key and State SHoudl be
-        return self.queryset.filter(sta)
 
 
 class CourseViewSet(CustomMetaDataMixin, ModelViewSet):

@@ -40,6 +40,16 @@ class SectionFieldSerializer(serializers.ModelSerializer):
         model = SectionField
         fields = '__all__'
 
+class StudentSerializer(serializers.ModelSerializer):
+    """
+
+    """
+    course = serializers.SlugRelatedField(queryset=Course.objects.all(), many=True, slug_field="name")
+
+    class Meta:
+        model = Student
+        fields = ('name', 'email', 'course')
+
 
 class SectionSerializer(serializers.ModelSerializer):
     """
@@ -65,22 +75,15 @@ class FeedbackSerializer(serializers.ModelSerializer):
     """
 
     """
-    sections = SectionSerializer(many=True)
+    student = StudentSerializer()
+    course = serializers.CharField(source='course.name')
 
     class Meta:
         model = Feedback
-        fields = '__all__'
+        fields = ('id', 'course',  'student', 'rating')
 
 
-class StudentSerializer(serializers.ModelSerializer):
-    """
 
-    """
-    course = serializers.PrimaryKeyRelatedField(queryset=Course.objects.all())
-
-    class Meta:
-        model = Student
-        fields = ('name', 'email', 'course')
 
 
 
