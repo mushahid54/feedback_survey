@@ -43,3 +43,46 @@ APIs
         "university": 1
      }
     `````
+
+** Course List**
+
+ - Method : GET
+ - URL : http://127.0.0.1:8000/api/v1/courses/
+ - headers : Content-Type: application/json
+ - response_body:
+       ```
+       {
+  "meta": {
+    "status": 1000,
+    "message": "",
+    "is_error": false
+  },
+  "data": [
+    {
+      "name": "Btech",
+      "course_id": "BT1",
+      "university": {
+        "name": "Stanford",
+        "address": ""
+      }
+    },
+    {
+      "name": "BCom",
+      "course_id": "BC1",
+      "university": {
+        "name": "Stanford",
+        "address": ""
+      }
+    },
+    {
+      "name": "BSc",
+      "course_id": "BS1",
+      "university": {
+        "name": "Stanford",
+        "address": ""
+      }
+    }
+  ]
+}       
+    ```
+
