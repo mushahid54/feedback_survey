@@ -24,7 +24,7 @@ admin.site.register(University, UniversityAdmin)
 
 
 class FeedbackAdmin(admin.ModelAdmin):
-    list_display = ('course', 'rating')
+    list_display = ('course', 'rating', 'student')
 
 admin.site.register(Feedback, FeedbackAdmin)
 

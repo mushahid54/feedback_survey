@@ -95,7 +95,7 @@ class Student(models.Model):
     """
     name = models.CharField(max_length=200)
     email = models.EmailField(max_length=255, blank=True)
-    course = models.ForeignKey("feedback_survey.Course", blank=True)
+    course = models.ManyToManyField("feedback_survey.Course", blank=True)
     university = models.ForeignKey("feedback_survey.University", blank=True)
     is_active = models.BooleanField(default=True)
 
@@ -110,7 +110,7 @@ class Student(models.Model):
 
     def get_course(self):
         if self.course:
-            return self.course.name
+            return "\n".join([student_course.name for student_course in self.course.all()])
         else:
             return "N/A"
 
