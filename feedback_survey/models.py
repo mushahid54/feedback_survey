@@ -73,6 +73,7 @@ class Feedback(models.Model):
     """
     """
     course = models.ForeignKey("feedback_survey.Course", null=True, blank=True)
+    student = models.ForeignKey("feedback_survey.Student", null=True, blank=True)
     rating = models.IntegerField()
     feedback_template = models.ForeignKey("feedback_survey.FeedbackTemplate", null=True, blank=True)
 
