@@ -25,8 +25,9 @@ Run the server
 
 Create Student with random course allotment by Managemnet Command
 ---------------
-- run python manage.py student_allotment_course
-
+- run python manage.py student_allotment_course # Creating Student with courses
+- run python manage.py request_feedbacks     # TO request feedback for student
+- run python manage.py create_template
 APIs
 ---------------
 
