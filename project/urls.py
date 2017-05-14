@@ -16,6 +16,9 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework import routers
+from django.conf.urls import url
+from rest_framework_swagger.views import get_swagger_view
+
 from authentication.views import UserViewSet
 #from chatapp.views import ChatMessageViewSet
 from feedback_survey.views import FeedbackSurveyViewSet, CourseViewSet, TeacherSerializerViewSet, \
@@ -30,9 +33,13 @@ router.register(r'courses', CourseViewSet)
 router.register(r'sections', SectionSerializerViewSet)
 router.register(r'students', StudentSerializerViewSet)
 
+
+schema_view = get_swagger_view(title='Feedback Survey API')
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
-    url(r'^api/v1/', include(router.urls, namespace='api'))
+    url(r'^api/v1/', include(router.urls, namespace='api')),
+    url(r'^$', schema_view)
     #url(r'^api/v1/', include('feedback_survey.urls', namespace='feedback_survey')),
 ]
