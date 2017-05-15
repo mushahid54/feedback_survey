@@ -45,7 +45,7 @@ class SectionField(models.Model):
     name = models.CharField(max_length=50)
     field_type = models.CharField(max_length=20)
     values = models.CharField(max_length=50)
-    nested_section = models.ForeignKey("self", null=True, blank=True)
+    parent_section = models.ForeignKey("self", null=True, blank=True)
 
 
 class Section(models.Model):
@@ -64,6 +64,7 @@ class Section(models.Model):
 class FeedbackTemplate(models.Model):
     """
     """
+    name = models.CharField(max_length=50, blank=True)
     sections = models.ManyToManyField("feedback_survey.Section")
 
     def __str__(self):
