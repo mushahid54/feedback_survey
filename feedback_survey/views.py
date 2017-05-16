@@ -14,7 +14,8 @@ from rest_framework import filters
 
 class FeedbackSurveyViewSet(CustomMetaDataMixin, ModelViewSet):
     """
-
+        Added OAuth if wants just uncomment the authentication and permission class and make sure created access token
+         at your end.
     """
     queryset = Feedback.objects.all()
     serializer_class = FeedbackSerializer
