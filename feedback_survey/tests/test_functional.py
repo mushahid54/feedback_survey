@@ -9,11 +9,9 @@ class CreateFeedbackTestCase(APITestCase):
 
         self.university = University.objects.create(name="Stanford", address="CA")
         self.course = Course.objects.create(name="Btech", course_id="BT01", university=self.university)
-
-        import pdb; pdb.set_trace()
         self.student = Student.objects.create(name="James", email="abc@gmail.com",
                                               university=self.university)
-        self.student.course.add(self.course )
+        self.student.course.add(self.course)
 
         self.sectionfield = SectionField.objects.create(name="Hey", field_type="text", values="whatsup" )
         self.sections = Section.objects.create(name="Dream")
@@ -33,6 +31,10 @@ class CreateFeedbackTestCase(APITestCase):
         }
 
     def test_create_order(self):
+        """
+             Test to get the feedback survey details
+        :return:
+        """
         response = self.client.post('/api/v1/feedback-survey/', data=self.request_json, format='json')
 
         self.assertEquals(response.status_code, 201)
