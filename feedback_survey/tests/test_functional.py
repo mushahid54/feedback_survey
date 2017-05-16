@@ -6,11 +6,14 @@ __author__ = 'MushahidKhan'
 
 class CreateFeedbackTestCase(APITestCase):
     def setUp(self):
-        import pdb; pdb.set_trace()
-        self.course = Course.objects.create(name="Btech", course_id="BT01", university="Stanford")
+
         self.university = University.objects.create(name="Stanford", address="CA")
+        self.course = Course.objects.create(name="Btech", course_id="BT01", university=self.university)
+
+        import pdb; pdb.set_trace()
         self.student = Student.objects.create(name="James", email="abc@gmail.com",
-                                              university=self.university, course=self.course)
+                                              university=self.university)
+        self.student.course.add(self.course )
 
         self.sectionfield = SectionField.objects.create(name="Hey", field_type="text", values="whatsup" )
         self.sections = Section.objects.create(name="Dream")
