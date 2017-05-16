@@ -1,8 +1,9 @@
 # Create your views here.
 from oauth2_provider.ext.rest_framework import OAuth2Authentication
-from rest_framework import permissions
+from rest_framework import permissions, generics
 from rest_framework.viewsets import ModelViewSet
 from feedback_survey.filters import FeedbackStudentFilter
+from rest_framework.response import Response
 
 from feedback_survey.models import Feedback, Course, Teacher, Section, Student, SectionField
 from feedback_survey.serializers import FeedbackSerializer, CourseSerializer, TeacherSerializer, SectionSerializer, \
@@ -103,3 +104,25 @@ class SectionFieldsSerializerViewSet(CustomMetaDataMixin, ModelViewSet):
     """
     queryset = SectionField.objects.all()
     serializer_class = SectionFieldSerializer
+
+
+class StudentPendingFeedback(CustomMetaDataMixin, generics.RetrieveAPIView):
+    """
+        To get the value of the Student based on the
+
+        1. **authentication:** yes
+        2. **authorization:** authenticated user
+
+
+    """
+    # authentication_classes = [OAuth2Authentication, ]
+    # permission_classes = [permissions.IsAuthenticated, ]
+
+    queryset = Feedback.objects.all()
+    serializer_class = FeedbackSerializer
+
+    def retrieve(self, request, *args, **kwargs):
+        student_id = self.request.query_params.get('student_id', None)
+        instance = self.queryset.filter(state="1", student_id=student_id)
+        serializer = self.get_serializer(instance, many=True)
+        return Response(serializer.data)

@@ -41,6 +41,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
     url(r'^api/v1/', include(router.urls, namespace='api')),
-    url(r'^$', schema_view)
-    #url(r'^api/v1/', include('feedback_survey.urls', namespace='feedback_survey')),
+    url(r'^$', schema_view),
+    url(r'^api/v1/', include('feedback_survey.urls', namespace='feedback_survey')),
 ]

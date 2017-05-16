@@ -91,7 +91,7 @@ class FeedbackSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Feedback
-        fields = ('id', 'course',  'student', 'rating')
+        fields = ('id', 'course',  'student', 'rating', 'state')
 
 
 class FeedbackCreateSerializer(serializers.ModelSerializer):
