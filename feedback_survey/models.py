@@ -41,6 +41,9 @@ class Course(models.Model):
 
         return avg_rating
 
+    def get_student_attached_to_course(self):
+        return "\n".join([student.name for student in self.student_set.all()])
+
 
 class SectionField(models.Model):
     """

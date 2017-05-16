@@ -6,7 +6,7 @@ from feedback_survey.models import Course, SectionField, Feedback, FeedbackTempl
 
 
 class CourseAdmin(admin.ModelAdmin):
-    list_display = ('name', 'course_id', 'course_avg_rating', 'get_university')
+    list_display = ('name', 'course_id', 'course_avg_rating', 'get_university', 'get_student_attached_to_course')
 
 admin.site.register(Course, CourseAdmin)
 
