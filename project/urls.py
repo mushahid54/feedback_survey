@@ -22,16 +22,17 @@ from rest_framework_swagger.views import get_swagger_view
 from authentication.views import UserViewSet
 #from chatapp.views import ChatMessageViewSet
 from feedback_survey.views import FeedbackSurveyViewSet, CourseViewSet, TeacherSerializerViewSet, \
-    SectionSerializerViewSet, StudentSerializerViewSet
+    SectionSerializerViewSet, StudentSerializerViewSet, SectionFieldsSerializerViewSet
 
 router = routers.DefaultRouter()
 #router.register(r'chat-messages', ChatMessageViewSet)
 router.register(r'create-user', UserViewSet)
+router.register(r'students', StudentSerializerViewSet)
+router.register(r'courses', CourseViewSet)
 router.register(r'feedback-survey', FeedbackSurveyViewSet)
 router.register(r'teachers', TeacherSerializerViewSet)
-router.register(r'courses', CourseViewSet)
 router.register(r'sections', SectionSerializerViewSet)
-router.register(r'students', StudentSerializerViewSet)
+router.register(r'sections-fields', SectionFieldsSerializerViewSet)
 
 
 schema_view = get_swagger_view(title='Feedback Survey API')
